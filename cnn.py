@@ -41,3 +41,4 @@ test_word ="Esto es muy malo"
 tw = tokenizer.texts_to_sequences([test_word])
 tw = pad_sequences(tw,maxlen=200)
 prediction = int(model.predict(tw).round().item())
+print(prediction)
