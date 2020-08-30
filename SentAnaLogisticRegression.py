@@ -24,8 +24,8 @@ classifier = LogisticRegression()
 classifier.fit(X_train, y_train)
 score = classifier.score(X_test, y_test)
 print("Con una precision del",score)
-test = vectorizer.transform(['Disfrutar'])
-result= classifier.predict(test)
+test = vectorizer.transform(['jugar mientras recibo clases'])
+result= classifier.predict(test);
 
 if result[0] == 1:
     print("Positivo")
