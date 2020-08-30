@@ -24,15 +24,15 @@ classifier = LogisticRegression()
 classifier.fit(X_train, y_train)
 score = classifier.score(X_test, y_test)
 print("Con una precision del",score)
-test = vectorizer.transform(['el dia de hoy no hay infectados'])
-result= classifier.predict(test);
+test = vectorizer.transform(['Disfrutar'])
+result= classifier.predict(test)
 
 if result[0] == 1:
-    print("Positivo");
+    print("Positivo")
 elif result[0] == 0:
-    print("Neutro");
+    print("Neutro")
 else:
-    print("Negativo");
+    print("Negativo")
 
 
 
