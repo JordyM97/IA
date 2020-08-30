@@ -11,8 +11,8 @@ from tensorflow.keras.layers import Embedding
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
-Dataset = 'db2.csv'
-df = pd.read_csv(Dataset, names=['sentence', 'label'], sep='|')
+Dataset = 'covid-data-clases.csv'
+df = pd.read_csv(Dataset, names=['sentence', 'label'], sep=';')
 
 
 tweet = df.sentence.values
