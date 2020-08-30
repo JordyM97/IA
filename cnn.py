@@ -16,9 +16,10 @@ df = pd.read_csv(Dataset, names=['sentence', 'label'], sep='|')
 
 
 tweet = df.sentence.values
-tokenizer = Tokenizer(num_words=5000)
+tokenizer = Tokenizer(num_words=2000)
 tokenizer.fit_on_texts(tweet)
 vocab_size = len(tokenizer.word_index) + 1
+print(vocab_size)
 encoded_docs = tokenizer.texts_to_sequences(tweet)
 padded_sequence = pad_sequences(encoded_docs, maxlen=200)
 
@@ -33,11 +34,11 @@ model.add(Dropout(0.2))
 model.add(Dense(1, activation='sigmoid'))
 model.compile(loss='binary_crossentropy',optimizer='adam', metrics=['accuracy'])
 
-history = model.fit(sentences_train, y_train, epochs=5, batch_size=32)
+history = model.fit(sentences_train, y_train, epochs=6, batch_size=32)
 score = model.evaluate(sentences_test, y_test)
 print("Certeza:", score[1])
 
-test_word ="Esto es muy malo"
+test_word ="Esto es muy malo, detesto esto"
 tw = tokenizer.texts_to_sequences([test_word])
 tw = pad_sequences(tw,maxlen=200)
 prediction = int(model.predict(tw).round().item())
