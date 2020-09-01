@@ -8,12 +8,12 @@ import matplotlib.pyplot as plt
 from plot_keras_history import plot_history
 
 class Classifier:
-    dataset="covid-data-clases.csv"
+    dataset="coviddatasetfinal.csv"
     classifier=LogisticRegression()
     score=0
     vectorizer = CountVectorizer()
     def __init__(self):
-        df = pd.read_csv(self.dataset, names=['tweets', 'sentimientos'], sep=';')
+        df = pd.read_csv(self.dataset, names=['tweets', 'sentimientos'], sep=',')
         tweets = df['tweets'].values
 
         y = df['sentimientos'].values
