@@ -17,7 +17,7 @@ class Classifier:
         tweets = df['tweets'].values
 
         y = df['sentimientos'].values
-        tweets_train, tweets_test, y_train, y_test = train_test_split(tweets, y, test_size=0.20, random_state=20)
+        tweets_train, tweets_test, y_train, y_test = train_test_split(tweets, y, test_size=0.10, random_state=20)
         
         self.vectorizer.fit(tweets_train)
         X_train = self.vectorizer.transform(tweets_train)
