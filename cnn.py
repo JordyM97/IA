@@ -12,10 +12,10 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 Dataset = 'covid-data-clases.csv'
-df = pd.read_csv(Dataset, names=['sentence', 'label'], sep=';')
+df = pd.read_csv(Dataset, names=['sentence', 'label'], sep=',')
 
 
-tweet = df.sentence.values
+tweet = df['sentence'].values
 tokenizer = Tokenizer(num_words=2000)
 tokenizer.fit_on_texts(tweet)
 vocab_size = len(tokenizer.word_index) + 1

@@ -2,11 +2,12 @@ from tkinter import *
 from sklearn.linear_model import LogisticRegression
 from SentAnaLogisticRegression import *
 class Aplicacion():
-    resultado=""
     def __init__(self):
+        
         self.classifier=Classifier()
         print(self.classifier.score)
         self.root = Tk()
+        self.resultado= StringVar(self.root,value="Resultado: ")
         self.root.resizable(width=False, height=False)
         self.root.geometry("1000x700")
         self.root.title('Analisis de sentimientos de Tweets')
@@ -20,7 +21,7 @@ class Aplicacion():
         self.TextArea.pack()
         self.bt= Button(self.root, text="Analizar tweet",bg="black",command=self.imprimir)
         self.bt.pack(side=TOP, padx=10, pady=5)
-        self.lbl4 = Label(self.root, text="Resultado: "+self.resultado,font=("Helvetica", 20),fg="black")
+        self.lbl4 = Label(self.root, textvariable=self.resultado,font=("Helvetica", 20),fg="black")
         self.lbl4.pack(pady=10)
 
 
@@ -29,7 +30,7 @@ class Aplicacion():
     def imprimir(self):
         test = self.classifier.vectorizer.transform([self.TextArea.get()])
         result= self.classifier.classifier.predict(test);
-        print(result[0])
+        self.resultado.set("Resultado: "+str(result[0]))
 
         
         
