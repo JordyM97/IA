@@ -11,11 +11,11 @@ from tensorflow.keras.layers import Embedding
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
-Dataset = 'covid-data-clases.csv'
-df = pd.read_csv(Dataset, names=['sentence', 'label'], sep=';')
+Dataset = 'coviddatasetfinal.csv'
+df = pd.read_csv(Dataset, names=['tweets', 'sentimientos'], sep=',')
 
 
-tweet = df.sentence.values
+tweet = df['tweets'].values
 tokenizer = Tokenizer(num_words=2000)
 tokenizer.fit_on_texts(tweet)
 vocab_size = len(tokenizer.word_index) + 1
@@ -23,7 +23,7 @@ print(vocab_size)
 encoded_docs = tokenizer.texts_to_sequences(tweet)
 padded_sequence = pad_sequences(encoded_docs, maxlen=200)
 
-y = df['label'].values
+y = df['sentimientos'].values
 sentences_train, sentences_test, y_train, y_test = train_test_split(padded_sequence, y,test_size=0.20, random_state=100)
 embedding_vector_length = 32
 model = Sequential()
@@ -34,7 +34,7 @@ model.add(Dropout(0.2))
 model.add(Dense(1, activation='sigmoid'))
 model.compile(loss='binary_crossentropy',optimizer='adam', metrics=['accuracy'])
 
-history = model.fit(sentences_train, y_train, epochs=6, batch_size=32)
+history = model.fit(sentences_train, y_train, epochs=5, batch_size=32)
 score = model.evaluate(sentences_test, y_test)
 print("Certeza:", score[1])
 
