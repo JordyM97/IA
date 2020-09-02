@@ -22,7 +22,7 @@ print(list(val).count(1))
 
 y = df['sentimientos'].values
 tweets_train, tweets_test, y_train, y_test = train_test_split(tweets, y, test_size=0.20, random_state=0)
-vectorizer = CountVectorizer(ngram_range=(1, 2), token_pattern=r'\b\w+\b', min_df=8, max_df=0.8, stop_words=stop)
+vectorizer = CountVectorizer(ngram_range=(1, 2), token_pattern=r'\b\w+\b', min_df=3, max_df=0.8, stop_words=stop)
 vectorizer.fit(tweets_train)
 X_train = vectorizer.transform(tweets_train)
 X_test = vectorizer.transform(tweets_test)
