@@ -6,6 +6,7 @@ class Aplicacion():
         
         self.classifier=Classifier()
         print(self.classifier.score)
+        print(self.classifier.X_train)
         self.root = Tk()
         self.resultado= StringVar(self.root,value="Resultado: ")
         self.root.resizable(width=False, height=False)

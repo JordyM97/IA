@@ -11,7 +11,7 @@ from tensorflow.keras.layers import Embedding
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
-Dataset = 'covid-data-clases.csv'
+Dataset = 'coviddatasetfinal.csv'
 df = pd.read_csv(Dataset, names=['sentence', 'label'], sep=',')
 
 
@@ -38,7 +38,7 @@ history = model.fit(sentences_train, y_train, epochs=6, batch_size=32)
 score = model.evaluate(sentences_test, y_test)
 print("Certeza:", score[1])
 
-test_word ="Esto es muy malo, detesto esto"
+test_word ="Hola"
 tw = tokenizer.texts_to_sequences([test_word])
 tw = pad_sequences(tw,maxlen=200)
 prediction = int(model.predict(tw).round().item())
