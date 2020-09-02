@@ -26,7 +26,7 @@ vectorizer = CountVectorizer(ngram_range=(1, 2), token_pattern=r'\b\w+\b', min_d
 vectorizer.fit(tweets_train)
 X_train = vectorizer.transform(tweets_train)
 X_test = vectorizer.transform(tweets_test)
-print(X_train)
+print(X_train.shape)
 classifier = LogisticRegression()
 classifier.fit(X_train, y_train)
 score = classifier.score(X_test, y_test)
